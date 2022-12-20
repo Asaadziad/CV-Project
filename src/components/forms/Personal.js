@@ -1,73 +1,41 @@
 import React, { Component } from "react";
-import PersonalComponenet from "./PersonalComponent";
-import Preview from "../preview/Preview";
+import InputComponenet from "./InputComponent";
 
 class Personal extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      firstName: "",
-      lastName: "",
-      Email: "",
-      pNumber: "",
-    };
-    this.isSubmitted = false;
-  }
-  handleChange = (e) => {
-    this.setState({
-      firstName:
-        e.target.id === "firstName" ? e.target.value : this.state.firstName,
-      lastName:
-        e.target.id === "lastName" ? e.target.value : this.state.lastName,
-      Email: e.target.id === "Email" ? e.target.value : this.state.Email,
-      pNumber: e.target.id === "pNumber" ? e.target.value : this.state.pNumber,
-    });
-  };
-  onSubmitPersonal = (e) => {
-    e.preventDefault();
-    this.isSubmitted = true;
-    this.setState({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      Email: this.state.Email,
-      pNumber: this.state.pNumber,
-    });
-  };
   render() {
+    const data = { ...this.props.dataValue };
     return (
-      <form onSubmit={this.onSubmitPersonal}>
-        <PersonalComponenet
+      <form onSubmit={this.props.onSubmit}>
+        <InputComponenet
           id="firstName"
           name="First name"
           type="text"
-          value={this.state.firstName}
-          onChange={this.handleChange}
+          value={data.firstName}
+          onChange={this.props.onChange}
         />
-        <PersonalComponenet
+        <InputComponenet
           id="lastName"
           name="Last name"
           type="text"
-          value={this.state.lastName}
-          onChange={this.handleChange}
+          value={data.lastName}
+          onChange={this.props.onChange}
         />
-        <PersonalComponenet
+        <InputComponenet
           id="Email"
           name="Email"
           type="text"
-          value={this.state.Email}
-          onChange={this.handleChange}
+          value={data.Email}
+          onChange={this.props.onChange}
         />
-        <PersonalComponenet
+        <InputComponenet
           id="pNumber"
           name="Phone number"
           type="text"
-          value={this.state.pNumber}
-          onChange={this.handleChange}
+          value={data.pNumber}
+          onChange={this.props.onChange}
         />
 
-        <Preview data={this.state} />
-        <button onClick={this.submitClicked}>Add</button>
+        <button>Add</button>
       </form>
     );
   }
