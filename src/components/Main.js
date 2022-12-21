@@ -3,6 +3,7 @@ import Education from "./forms/Education";
 import Personal from "./forms/Personal";
 import Practical from "./forms/Practical";
 import CVPreview from "./preview/CVPreview";
+import "./main.css";
 
 class Main extends Component {
   constructor() {
@@ -33,7 +34,7 @@ class Main extends Component {
   }
 
   handleChange = (e) => {
-    const { personal, practical } = this.state;
+    const { personal, practical, education } = this.state;
     this.setState({
       personal: {
         firstName:
@@ -51,11 +52,22 @@ class Main extends Component {
         from: e.target.id === "From" ? e.target.value : practical.from,
         to: e.target.id === "To" ? e.target.value : practical.to,
       },
+      education: {
+        universityName:
+          e.target.id === "universityName"
+            ? e.target.value
+            : education.universityName,
+        city: e.target.id === "CityEdu" ? e.target.value : education.city,
+        degree: e.target.id === "Degree" ? e.target.value : education.degree,
+        subject: e.target.id === "Subject" ? e.target.value : education.subject,
+        from: e.target.id === "FromEdu" ? e.target.value : education.from,
+        to: e.target.id === "ToEdu" ? e.target.value : education.to,
+      },
     });
   };
   onSubmit = (e) => {
     e.preventDefault();
-    const { personal, practical } = this.state;
+    const { personal, practical, education } = this.state;
     this.setState({
       personal: {
         firstName: personal.firstName,
@@ -70,25 +82,44 @@ class Main extends Component {
         from: practical.from,
         to: practical.to,
       },
+      education: {
+        universityName: education.universityName,
+        city: education.city,
+        degree: education.degree,
+        subject: education.subject,
+        from: education.from,
+        to: education.to,
+      },
     });
   };
   render() {
-    const { personal, practical } = this.state;
+    const { personal, practical, education } = this.state;
     return (
-      <div>
-        <Personal
-          onSubmit={this.onSubmit}
-          onChange={this.handleChange}
-          dataValue={personal}
-        />
-        <Practical
-          onSubmit={this.onSubmit}
-          onChange={this.handleChange}
-          dataValue={practical}
-        />
-        <Education />
-
-        <CVPreview personalInfo={personal} practicalInfo={practical} />
+      <div className="container mainContainer">
+        <div>
+          <Personal
+            onSubmit={this.onSubmit}
+            onChange={this.handleChange}
+            dataValue={personal}
+          />
+          <Practical
+            onSubmit={this.onSubmit}
+            onChange={this.handleChange}
+            dataValue={practical}
+          />
+          <Education
+            onSubmit={this.onSubmit}
+            onChange={this.handleChange}
+            dataValue={education}
+          />
+        </div>
+        <div>
+          <CVPreview
+            personalInfo={personal}
+            practicalInfo={practical}
+            educationInfo={education}
+          />
+        </div>
       </div>
     );
   }

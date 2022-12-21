@@ -1,0 +1,12 @@
+.nameContainer {
+  height: 110px;
+  background-color: aqua;
+}
+
+.itemTitle {
+  border-bottom: 1px solid black;
+}
+.itemBody {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}

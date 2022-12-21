@@ -10,6 +10,7 @@ class InputComponenet extends Component {
           type={this.props.type}
           value={this.props.value}
           onChange={this.props.onChange}
+          className="mb-2"
         />
       </div>
     );

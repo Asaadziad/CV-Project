@@ -4,39 +4,29 @@ import InputComponenet from "./InputComponent";
 class Personal extends Component {
   render() {
     const data = { ...this.props.dataValue };
-    return (
-      <form onSubmit={this.props.onSubmit}>
-        <InputComponenet
-          id="firstName"
-          name="First name"
-          type="text"
-          value={data.firstName}
-          onChange={this.props.onChange}
-        />
-        <InputComponenet
-          id="lastName"
-          name="Last name"
-          type="text"
-          value={data.lastName}
-          onChange={this.props.onChange}
-        />
-        <InputComponenet
-          id="Email"
-          name="Email"
-          type="text"
-          value={data.Email}
-          onChange={this.props.onChange}
-        />
-        <InputComponenet
-          id="pNumber"
-          name="Phone number"
-          type="text"
-          value={data.pNumber}
-          onChange={this.props.onChange}
-        />
+    const inputNames = [
+      ["firstName", "First name"],
+      ["lastName", "Last name"],
+      ["Email", "Email"],
+      ["pNumber", "Phone number"],
+    ];
 
-        <button>Add</button>
-      </form>
+    return (
+      <div className="container formContainer mb-3 mt-3">
+        <form onSubmit={this.props.onSubmit}>
+          {inputNames.map((item) => {
+            return (
+              <InputComponenet
+                id={item[0]}
+                name={item[1]}
+                type="text"
+                value={data[item[0]]}
+                onChange={this.props.onChange}
+              />
+            );
+          })}
+        </form>
+      </div>
     );
   }
 }
